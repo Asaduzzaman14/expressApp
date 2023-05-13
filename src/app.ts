@@ -21,7 +21,6 @@ app.use(express.urlencoded({ extended: true }))
  * Step4: Database Query
 */
 
-// app.get('/api/v1/user', userRouter)
 
 app.use('/api/v1/user', userRoutes)
 

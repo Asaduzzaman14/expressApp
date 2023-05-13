@@ -1,10 +1,12 @@
 import express from "express";
-import { createuser } from "./user.controller";
+import { createuser, getusers } from "./user.controller";
+import { getUserFromDb } from "./user.service";
 
 
 const router = express.Router()
 
-router.get('/', createuser)
+router.get('/', getusers)
+router.post('/create-user', createuser)
 
 
 
