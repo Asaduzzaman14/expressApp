@@ -7,6 +7,9 @@ export const creaToUserToDb = async (paylode: IUser): Promise<IUser> => {
 
     const user = new User(paylode);
     await user.save();
+    console.log(user.fullName());
+
+    // user.fullName()  // custom instons method
     return user
 }
 
@@ -21,6 +24,12 @@ export const getUserByIdFromDb = async (payode: string): Promise<IUser | null> =
 
     const user = await User.findOne({ id: payode }, { name: 1, contactNo: 1 })
     return user
+}
+
+export const getAdminFromDb = async (payode: string): Promise<IUser | null> => {
+
+    const adminUser = await User.findOne({ id: payode }, { name: 1, contactNo: 1 })
+    return adminUser
 }
 
 

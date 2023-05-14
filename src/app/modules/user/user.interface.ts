@@ -18,3 +18,6 @@ export interface IUser {
 
 }
 
+export interface IUserMethods {
+    fullName(): string;
+}

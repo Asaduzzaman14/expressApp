@@ -1,8 +1,15 @@
-import { Schema, model } from "mongoose";
-import { IUser } from "./user.interface";
+import { Model, Schema, model } from "mongoose";
+import { IUser, IUserMethods } from "./user.interface";
+
+
+
+type UserModel = Model<IUser, {}, IUserMethods>;
+
+
+
 
 // Creating Schema using interface
-const userSchema = new Schema<IUser>({
+const userSchema = new Schema<IUser, UserModel, IUserMethods>({
     id: {
         type: String,
         require: true,
@@ -59,8 +66,12 @@ const userSchema = new Schema<IUser>({
 
 });
 
+userSchema.method('fullName', function fullName() {
+    return this.name.firstName + ' ' + this.name.lastName;
+});
+
 // 3. Create a Model using Schima.
-const User = model<IUser>('User', userSchema);
+const User = model<IUser, UserModel>('User', userSchema);
 
 
 export default User;
