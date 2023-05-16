@@ -1,3 +1,6 @@
+import { HydratedDocument, Model } from "mongoose";
+
+
 // Step1: Create Iterface
 export interface IUser {
     id: string;
@@ -18,6 +21,15 @@ export interface IUser {
 
 }
 
+
+// intance method
 export interface IUserMethods {
     fullName(): string;
 }
+
+
+// statics
+export interface UserModel extends Model<IUser, {}, IUserMethods> {
+    getAdminUsers(): Promise<HydratedDocument<IUser, IUserMethods>>;
+}
+

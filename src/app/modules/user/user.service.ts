@@ -3,12 +3,8 @@ import User from "./user.model";
 
 export const creaToUserToDb = async (paylode: IUser): Promise<IUser> => {
 
-    console.log(paylode, 'user data');
-
     const user = new User(paylode);
     await user.save();
-    console.log(user.fullName());
-
     // user.fullName()  // custom instons method
     return user
 }
@@ -26,12 +22,16 @@ export const getUserByIdFromDb = async (payode: string): Promise<IUser | null> =
     return user
 }
 
-export const getAdminFromDb = async (payode: string): Promise<IUser | null> => {
+export const getAdminFromDb = async () => {
 
-    const adminUser = await User.findOne({ id: payode }, { name: 1, contactNo: 1 })
+    const adminUser = await User.getAdminUsers()
     return adminUser
 }
 
+// Class -> atach -> method -> Directly call using Class
+// user  = new User
+// user.instance method
+// User.getAdminUser()
 
 
 

@@ -22,6 +22,7 @@ app.use(express.urlencoded({ extended: true }))
 */
 
 
+
 app.use('/api/v1/user', userRoutes)
 
 
